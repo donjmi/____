@@ -1,0 +1,15 @@
+body {
+
+	background-color : white;
+}
+
+.thead-dark {
+	text-align: center;
+}
+
+      @media (min-width: 868px) 
+      {
+        .table, .form-control {
+          width: 800px;
+        }
+      }
