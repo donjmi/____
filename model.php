@@ -23,7 +23,17 @@ function viewPost($postid)
 	return $post;
 }
 
-// view comment
+// comments number
+function nbComment()
+{
+
+	$bdd = dbConnect();
+	$nbrcomment = $bdd->prepare('SELECT COUNT(id_post) as nbrmsg FROM comments WHERE id_post=?');
+	$nbrcomment->execute(array($_GET['id']));
+	$comment = $nbrcomment->fetch();
+
+	return $comment;
+}
 
 // view list comments
 function listComments($postid)

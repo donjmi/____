@@ -19,6 +19,11 @@
 			<table class="table table-borderless table-sm">
 					<thead  class="thead-dark">
 						<tr><th><?php echo htmlspecialchars($post['title']) . ' le ' . $post['jour'] . '/' . $post['mois'] . '/' . $post['annee'] . ' à ' . $post['heure'] . 'h' . $post['minute'] . 'min' . $post['seconde'] . 's' ; ?>
+						<?php
+						{
+							echo '(' . htmlspecialchars($comment['nbrmsg']) .' commentaire(s))';
+						}
+					?>
 			<?php
 			//$post->closeCursor();
 			//$Reqcomment->closeCursor();
