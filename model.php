@@ -30,9 +30,9 @@ function nbComment()
 	$bdd = dbConnect();
 	$nbrcomment = $bdd->prepare('SELECT COUNT(id_post) as nbrmsg FROM comments WHERE id_post=?');
 	$nbrcomment->execute(array($_GET['id']));
-	$comment = $nbrcomment->fetch();
+	$ncomment = $nbrcomment->fetch();
 
-	return $comment;
+	return $ncomment;
 }
 
 // view list comments
