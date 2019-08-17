@@ -45,6 +45,25 @@ function listComments($postid)
 	return $ReqComment;
 }	
 
+// Insert into table comment 
+function addPosts()
+{
+	$bdd = dbConnect();
+
+	if (isset($_POST['author'], $_POST['comment']) AND !empty($_POST['author']) AND !empty($_POST['comment']))
+		{
+			$insert=$bdd->prepare('INSERT INTO comments (id_post, author, comment, date_comment)
+												VALUES (?, ?, ?, NOW())');
+
+			$insert->execute(array($_GET['id'], $_POST['author'], $_POST['comment']));
+
+
+			return $insert;
+
+			$insert->closeCursor();
+		}
+
+}
 
 function dbConnect()
 {
