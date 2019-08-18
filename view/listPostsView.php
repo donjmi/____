@@ -25,7 +25,7 @@
 							?></td></tr>
 						<tr><td class="table-secondary">
 							<?php 
-								echo '<a href="post.php?id='.$affbillets['id'].'">'; 
+								echo '<a href="index.php?action=post&amp;id='.$affbillets['id'].'">';
 							?>commentaires</a>							
 						</td></tr>
 				</table><br/>
