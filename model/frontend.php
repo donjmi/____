@@ -46,7 +46,7 @@ function listComments($postid)
 }	
 
 // Insert into table comment 
-function addPosts()
+function addPosts($postId, $author, $comment)
 {
 	$bdd = dbConnect();
 
@@ -55,7 +55,7 @@ function addPosts()
 			$insert=$bdd->prepare('INSERT INTO comments (id_post, author, comment, date_comment)
 												VALUES (?, ?, ?, NOW())');
 
-			$insert->execute(array($_GET['id'], $_POST['author'], $_POST['comment']));
+			$insert->execute(array($postId, $author, $comment));
 
 
 			return $insert;
