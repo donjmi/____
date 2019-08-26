@@ -1,29 +1,40 @@
 <?php
 
-require('model/frontend.php');
+require_once('model/PostManager.php');
+require_once('model/CommentManager.php');
 
 function listPosts()
 {
    
-	$posts = getBillets();
+   	$PostManager = new  PostManager();
+	$posts = $PostManager->getBillets();
 
 	require('view/frontend/listPostsView.php');
 }
 
 function post()
 {
-    $post = viewPost($_GET['id']);
-    $ncomment = nbComment($_GET['id']);
-    $ReqComment = listComments($_GET['id']);
-    
+
+	$PostManager = new  PostManager();
+	$CommentManager = new CommentManager();
+
+
+	$post = $PostManager->viewPost($_GET['id']);
+  	$ncomment = $CommentManager->nbComment($_GET['id']);
+	$ReqComment = $CommentManager->listComments($_GET['id']);
+	   
     require('view/frontend/postView.php');
 }
 
+
 function addComment($postId, $author, $comment)
 {
-    $insert = addPosts($postId, $author, $comment);
+   
+	$CommentManager = new CommentManager();
+    $insert = $CommentManager->postComment($postId, $author, $comment);
 
-    if ($insert === false) {
+    if ($insert === false) 
+    {
         die('Impossible d\'ajouter le commentaire !');
     }
     else {

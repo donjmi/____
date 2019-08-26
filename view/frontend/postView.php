@@ -38,8 +38,7 @@
 					<form class="form-group" action="index.php?action=addComment&amp;id=<?= $post['id'] ?>"  method="POST">
 						<p><label>Auteur : </label><input class="form-control" type="text" name="author" required></p>
 						<p><label>Votre commentaire : </label><input class="form-control" type="text" name="comment" required></p>
-						<p><input type="hidden" type="text" name="id_post "value="<?php echo $_GET['id_post'];?>" ></p>
-						<p><input type="hidden" name="date_comment" value="<?php echo $date;?>"></p>
+					
 						<p><button type="submit" name="submit_msg" class="btn btn-primary">Envoyer</button></p>
 					</form>
 				<br/ >
