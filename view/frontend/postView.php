@@ -56,11 +56,17 @@
 							<?php 
 							$datecom = $comments['jour'] . '/' . $comments['mois'] . '/' . $comments['annee'] . ' à ' . $comments['heure'] . 'h' . $comments['minute'] . 'min' . $comments['seconde'] . 's';
 							?>
-						<tr><th><?php echo '-'.htmlspecialchars($comments['author']) . ' le ' . $datecom; ?></th></tr></thead>
-						<tr><td ><?php echo htmlspecialchars($comments['comment']); ?></td></tr>
+							<tr>
+								<th><?php echo '-'.htmlspecialchars($comments['author']) . ' le ' . $datecom; ?></th>
+							</tr>
+						</thead>
+							<tr>
+								<td ><?php echo htmlspecialchars($comments['comment']); ?>
+
+								<a href="modif.php?id=$comments['id']"> (modifier)</a></td>
+							</tr>
 					</table><br/>
 					<?php
-						//$Reqcomment->closeCursor();
 					}
 					?>
 

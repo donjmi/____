@@ -1,4 +1,5 @@
 <?php 
+namespace opc2\model;
 require_once('model/Manager.php');
 
 class PostManager extends Manager
@@ -29,20 +30,6 @@ class PostManager extends Manager
 
 	return $post;
 	}
-
-
-	// private function dbConnect()
-	// {
-	//     try
-	//     {
-	//         $bdd = new PDO('mysql:host=localhost;dbname=TpBlog2;charset=utf8', 'root', '');
-	//         return $bdd;
-	//     }
-	//     catch(Exception $e)
-	//     {
-	//         die('Erreur : '.$e->getMessage());
-	//     }
-	// }
 
 }
 
