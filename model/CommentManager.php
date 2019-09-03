@@ -1,18 +1,20 @@
 <?php
-
+namespace opc2\model;
 require_once('model/Manager.php');
 
-class CommentManager extends Manager{
-	
+
+class CommentManager extends Manager
+{
+	//affichage liste des commentaires
 	public function listComments($postid)
 	{
 		$bdd = $this-> dbConnect();
-		$ReqComment = $bdd->prepare('SELECT author, comment, date_comment, DAY(date_comment) AS jour, MONTH(date_comment) AS mois, YEAR(date_comment) AS annee, HOUR(date_comment) AS heure, MINUTE(date_comment) AS minute, SECOND(date_comment) AS seconde FROM comments WHERE post_id=? ORDER BY ID DESC');
+		$ReqComment = $bdd->prepare('SELECT id, post_id, author, comment, date_comment, DAY(date_comment) AS jour, MONTH(date_comment) AS mois, YEAR(date_comment) AS annee, HOUR(date_comment) AS heure, MINUTE(date_comment) AS minute, SECOND(date_comment) AS seconde FROM comments WHERE post_id=? ORDER BY ID DESC');
 		$ReqComment->execute(array($postid));
 
 		return $ReqComment;
 	}	
-
+	//insertion commentaires
 	public function postComment($postId, $author, $comment)
 	{
 	    $bdd = $this-> dbConnect();
@@ -21,7 +23,7 @@ class CommentManager extends Manager{
 
 	    return $insert;
 	}
-
+	// comptage nbr de commentaires
 	public function nbComment()
 		{
 
@@ -32,20 +34,35 @@ class CommentManager extends Manager{
 
 			return $ncomment;
 		}
+	// commentaire à modifier du formulaire
+	public function modifComment($id)
+		{
+			$bdd = $this->dbConnect();
 
-	/*private function dbConnect()
-	{
-	    try
-	    {
-	        $bdd = new PDO('mysql:host=localhost;dbname=TpBlog2;charset=utf8', 'root', '');
-	        return $bdd;
-	    }
-	    catch(Exception $e)
-	    {
-	        die('Erreur : '.$e->getMessage());
-	    }
-	}*/
+			$modif_form = $bdd->prepare('SELECT id, author, comment FROM comments WHERE id=?');
+			$modif_form->execute(array($id));
 
+			//$data = $modif_form->fetch()
+
+			return $modif_form->fetch();
+
+		}
+
+		// modification du commentaire
+	public function updateComment($id, $comment)
+		{
+			$bdd = $this->dbConnect();
+
+			/*$id= $_GET['id'];
+			$comment=$_POST['comment'];*/
+	
+			$update = $bdd->prepare('UPDATE comments SET comment=? WHERE id=? ');
+			$update->execute(array($comment,$id));
+	
+		
+			header('location: affichage.php');
+
+		}
 }
 
 ?>

@@ -1,7 +1,12 @@
 <?php
 
+use opc2\Model\PostManager;
+use opc2\Model\CommentManager;
+//use opc2\Model\EditManager;
+
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
+
 
 function listPosts()
 {
@@ -39,5 +44,20 @@ function addComment($postId, $author, $comment)
     }
     else {
         header('Location: index.php?action=post&id=' . $postId);
+    }
+}
+
+
+function editComment($id)
+{  
+   	$CommentManager = new  CommentManager();
+	$data = $CommentManager->modifComment($id);
+	
+	if ($data === false)
+    {
+        die('Impossible de modifier le commentaire !');
+    }
+    else {
+		require('view/frontend/listCommentView.php');
     }
 }
