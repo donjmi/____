@@ -31,4 +31,18 @@ abstract class MainModel{
             echo "Erreur de connexion : " . $exception->getMessage();
         }
     }   
+
+    public function getAll(){
+        $req = "SELECT DISTINCT * FROM ". $this->table ." ORDER BY id desc LIMIT 0,5" ;
+        $query = $this->_connexion->prepare($req);
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    public function getOne(){
+        $req = "SELECT * FROM ". $this->table ."WHERE id=" .$this->id;
+        $query = $this->_connexion->prepare($req);
+        $query->execute();
+        return $query->fetch();
+    }
 }
