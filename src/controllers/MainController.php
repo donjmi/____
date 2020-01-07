@@ -16,4 +16,10 @@ abstract class MainController
             $model = $model.'Model';
             $this->$model = new $model();  
     }
+    public function Render(string $file, array $data = []){
+        extract($data);
+
+        // var_dump($data);  die();
+        require_once('./../src/views/' .$file. '.php');
+    }
 }
