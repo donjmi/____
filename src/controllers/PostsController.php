@@ -18,7 +18,11 @@ class PostsController extends MainController
          * @var mixed $articles 
          * posts use to view in index file
          */
-        $this->Render('index', ['posts' => $articles]);
-        
+        $this->Render('index', ['posts' => $articles]);   
+    }
+
+    public function Read($id){
+        echo  $id;
+
     }
 }
