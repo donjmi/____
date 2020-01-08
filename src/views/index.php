@@ -2,7 +2,7 @@
 
 <?php foreach($posts as $articles): ?>
 
-<h2><?= $articles['title'] ?></h2>
+<h2><a href="PostsController/Read/<?= $articles['id'] ?>"><?= $articles['title'] ?></a></h2>
 
 <p><?= $articles['content'] ?></p>
 
